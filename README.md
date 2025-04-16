@@ -17,7 +17,6 @@ This project provides two versions of a simple Go-based API using [Ollama](https
   ```bash
   brew install ollama
   brew services start ollama
-  ollama pull llama2
   ollama run llama2
 
 ## Run (Gin version)
