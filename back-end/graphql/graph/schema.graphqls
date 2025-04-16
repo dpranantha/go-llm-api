@@ -1,0 +1,11 @@
+# GraphQL schema example
+#
+
+type Query {
+    hello: String!
+    promptResponse(prompt: String!): String!
+}
+
+type Mutation {
+    setPrompt(prompt: String!): String!
+}

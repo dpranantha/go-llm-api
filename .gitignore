@@ -1,0 +1,56 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+bin/*
+
+# Test binary, output of `go test -c`
+*.test
+
+# Output of the go coverage tool
+*.out
+
+# Logs
+*.log
+
+# Dependency directories (Go Modules)
+vendor/
+
+# Go workspace files
+go.work
+go.work.sum
+
+# IDE/editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Fiber static folder (if built dynamically)
+public/
+
+# gqlgen generated files (you might *not* want to ignore these if checked in)
+graphql/graph/generated.go
+
+# dotenv files (optional)
+.env
+.env.*
+
+# Local data or temporary files
+tmp/
+*.bak
+
+# If you use Docker
+docker-compose.override.yml
+*.local.yml
+
+# Fiber-specific hot reload tools
+.air/
+.air.toml
