@@ -9,7 +9,7 @@ require (
 	github.com/vektah/gqlparser/v2 v2.5.23
 )
 
-require github.com/gofiber/adaptor/v2 v2.2.1 // indirect
+require github.com/gofiber/adaptor/v2 v2.2.1
 
 require (
 	github.com/agnivade/levenshtein v1.2.1 // indirect
