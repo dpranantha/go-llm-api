@@ -30,7 +30,7 @@ The Gin API will start on http://localhost:8080
   ```bash
   make run FRAMEWORK=fiber
   ```
-The Fiber API will start on http://localhost:3000
+The Fiber API will start on http://localhost:8080
 
 ## API Usage
 Via curl POST:
