@@ -47,6 +47,16 @@ query {
 }
 ```
 
+Via ChatUI
+  1. Go to front-end/gochat folder
+  2. Install dependencies and run locally - assuming you have npm
+  ```
+  npm install
+  npm run dev
+  3. Go to http://localhost:5173/chat
+  4. Ask your question in the chat box
+  ```
+
 ## Roadmap
  - Add .env support
  - Extracting LLM call to internal utilities
