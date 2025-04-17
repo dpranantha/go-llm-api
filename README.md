@@ -53,10 +53,10 @@ Via ChatUI
   ```
   npm install
   npm run dev
+  ```
   3. Go to http://localhost:5173/chat
   4. Ask your question in the chat box
-  ```
-
+  
 ## Roadmap
  - Add .env support
  - Extracting LLM call to internal utilities
