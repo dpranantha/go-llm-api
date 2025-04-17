@@ -32,7 +32,7 @@ func ginServer() {
 
 	// ✅ CORS Middleware
 	r.Use(gcors.New(gcors.Config{
-		AllowOrigins:     []string{"http://localhost:3000"}, // or "*"
+		AllowOrigins:     []string{"http://localhost:5173"}, // or "*"
 		AllowMethods:     []string{"GET", "POST", "OPTIONS"},
 		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
 		ExposeHeaders:    []string{"Content-Length"},
@@ -58,7 +58,7 @@ func fiberServer() {
 
 	// ✅ CORS Middleware
 	app.Use(fcors.New(fcors.Config{
-		AllowOrigins:     "http://localhost:3000", // Frontend origin
+		AllowOrigins:     "http://localhost:5173", // Frontend origin
 		AllowMethods:     "GET,POST,OPTIONS",
 		AllowHeaders:     "Origin,Content-Type,Authorization",
 		ExposeHeaders:    "Content-Length",
