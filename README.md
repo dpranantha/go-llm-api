@@ -41,9 +41,11 @@ curl -X POST http://localhost:8080/prompt \
 ```
 
 Via Graphql UI in http://localhost:8080/graphql:
+```
 query {
   promptResponse(prompt: "Tell me a joke about gophers")
 }
+```
 
 ## Roadmap
  - Add .env support
