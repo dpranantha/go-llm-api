@@ -7,12 +7,15 @@ import (
 	graphql "github.com/dpranantha/go-llm-api/back-end/graphql"
 
 	ginHandler "github.com/dpranantha/go-llm-api/back-end/rest/pooling/gin"
+	wsGin "github.com/dpranantha/go-llm-api/back-end/rest/ws/gin"
 	gcors "github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 
 	fiberHandler "github.com/dpranantha/go-llm-api/back-end/rest/pooling/fiber"
+	wsFiber "github.com/dpranantha/go-llm-api/back-end/rest/ws/fiber"
 	"github.com/gofiber/fiber/v2"
 	fcors "github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/gofiber/websocket/v2"
 )
 
 func main() {
@@ -49,6 +52,11 @@ func ginServer() {
 	// GraphQL routes
 	graphql.RegisterGraphQLRoutesGin(r)
 
+	// WS routes
+	r.GET("/prompt/ws", func(c *gin.Context) {
+		wsGin.HandleLLMStream(c.Writer, c.Request)
+	})
+
 	r.Run(":8080")
 }
 
@@ -71,6 +79,12 @@ func fiberServer() {
 
 	// ✅ Register GraphQL Routes
 	graphql.RegisterGraphQLRoutesFiber(app)
+
+	// WS routes
+	app.Get("/prompt/ws", websocket.New(func(c *websocket.Conn) {
+		// Handle LLM streaming logic in this handler
+		wsFiber.HandleLLMStreamFiber(c)
+	}))
 
 	// Start the server on port 8080
 	app.Listen(":8080")

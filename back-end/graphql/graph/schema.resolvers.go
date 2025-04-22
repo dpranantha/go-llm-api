@@ -6,12 +6,11 @@ package graph
 
 import (
 	"context"
-	"fmt"
 )
 
 // SetPrompt is the resolver for the setPrompt field.
 func (r *mutationResolver) SetPrompt(ctx context.Context, prompt string) (string, error) {
-	panic(fmt.Errorf("not implemented: SetPrompt - setPrompt"))
+	return r.Resolver.PromptService.SetPrompt(prompt)
 }
 
 // Hello is the resolver for the hello field.

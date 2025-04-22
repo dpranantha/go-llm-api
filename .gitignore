@@ -54,3 +54,5 @@ docker-compose.override.yml
 # Fiber-specific hot reload tools
 .air/
 .air.toml
+
+__*

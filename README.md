@@ -54,7 +54,9 @@ Via ChatUI
   npm install
   npm run dev
   ```
-  3. Go to http://localhost:5173/chat
+  3. Two flavours
+    - For Rest API non stream: go to http://localhost:5173/chat - Uses GraphQL interface
+    - For Websocket stream style: go to http://localhost:5173/chatws - Uses REST + Websocket
   4. Ask your question in the chat box
   
 ## Roadmap

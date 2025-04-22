@@ -14,10 +14,17 @@ func NewPromptService(endpoint string) *PromptService {
 	return &PromptService{Endpoint: endpoint}
 }
 
-// Helper function to make the REST call to /prompt
+func (ps *PromptService) SetPrompt(prompt string) (string, error) {
+	//TODO: mutate the prompt memory
+	return prompt, nil
+}
+
+// Helper function to make the REST call to /prompt 8080
 func (ps *PromptService) Generate(prompt string) (string, error) {
-	payload := map[string]string{
+	payload := map[string]any{
+		"model":  "llama2",
 		"prompt": prompt,
+		"stream": false,
 	}
 	body, err := json.Marshal(payload)
 	if err != nil {
