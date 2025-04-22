@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 
 const ChatApp = () => {
-  const socketRef = useRef(null); // Ref to keep WebSocket instance persistent
+  const socketRef = useRef<WebSocket>(null); // Ref to keep WebSocket instance persistent
   const [input, setInput] = useState(""); // User input message
   const [messages, setMessages] = useState([]); // Store messages (both user and LLM responses)
   const [waiting, setWaiting] = useState(false); // Flag to indicate if the server is responding
