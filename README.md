@@ -35,12 +35,20 @@ The Fiber API will start on http://localhost:8080
 Via curl POST:
 
 ```bash
+# Non Stream
 curl -X POST http://localhost:8080/prompt \
   -H "Content-Type: application/json" \
   -d '{"prompt": "What is the capital of France?"}'
+
+# SSE Post - Non standard
+curl -X POST http://localhost:8080/prompt/sse \
+  -H "Content-Type: application/json" \
+  -d '{"prompt": "What is the capital of France?"}'
+
+# Websocket: only via chat
 ```
 
-Via Graphql UI in http://localhost:8080/graphql:
+Via Graphql UI in http://localhost:8080/graphql using Non Stream:
 ```
 query {
   promptResponse(prompt: "Tell me a joke about gophers")
@@ -54,11 +62,12 @@ Via ChatUI
   npm install
   npm run dev
   ```
-  3. Two flavours
+  3. Three flavours
 
     - For Rest API non stream: go to http://localhost:5173/chat - Uses GraphQL interface
     - For Websocket stream style: go to http://localhost:5173/chatws - Uses REST + Websocket
-    
+    - For Non standard POST SSE stream style: go to http://localhost:5173/chatsse - Uses REST SSE
+
   4. Ask your question in the chat box
   
 ## Roadmap

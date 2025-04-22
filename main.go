@@ -7,11 +7,13 @@ import (
 	graphql "github.com/dpranantha/go-llm-api/back-end/graphql"
 
 	ginHandler "github.com/dpranantha/go-llm-api/back-end/rest/pooling/gin"
+	sseGin "github.com/dpranantha/go-llm-api/back-end/rest/sse/gin"
 	wsGin "github.com/dpranantha/go-llm-api/back-end/rest/ws/gin"
 	gcors "github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 
 	fiberHandler "github.com/dpranantha/go-llm-api/back-end/rest/pooling/fiber"
+	sseFiber "github.com/dpranantha/go-llm-api/back-end/rest/sse/fiber"
 	wsFiber "github.com/dpranantha/go-llm-api/back-end/rest/ws/fiber"
 	"github.com/gofiber/fiber/v2"
 	fcors "github.com/gofiber/fiber/v2/middleware/cors"
@@ -57,6 +59,9 @@ func ginServer() {
 		wsGin.HandleLLMStream(c.Writer, c.Request)
 	})
 
+	//SSE routes
+	r.POST("/prompt/sse", sseGin.HandleLLMStreamSSE)
+
 	r.Run(":8080")
 }
 
@@ -85,6 +90,9 @@ func fiberServer() {
 		// Handle LLM streaming logic in this handler
 		wsFiber.HandleLLMStreamFiber(c)
 	}))
+
+	// SSE route
+	app.Post("/prompt/sse", sseFiber.HandlePromptSSE)
 
 	// Start the server on port 8080
 	app.Listen(":8080")
