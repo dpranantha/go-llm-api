@@ -3,9 +3,30 @@ import React, { useState, useEffect, useRef } from "react";
 const ChatApp = () => {
   const socketRef = useRef<WebSocket>(null); // Ref to keep WebSocket instance persistent
   const [input, setInput] = useState(""); // User input message
-  const [messages, setMessages] = useState([]); // Store messages (both user and LLM responses)
+
+  type Message = {
+    role: "user" | "assistant" | "system";
+    content: string;
+  };
+
+  const [messages, setMessages] = useState<Message[]>([]); // Store messages (both user and LLM responses)
   const [waiting, setWaiting] = useState(false); // Flag to indicate if the server is responding
 
+  const updateMessages = (prevMessages: Message[], event: { data: string }): Message[] => {
+    const newMessages = [...prevMessages];
+    const lastMessage = newMessages[newMessages.length - 1];
+  
+    if (lastMessage && lastMessage.role === "system") {
+      if (!lastMessage.content.includes(event.data)) {
+        lastMessage.content += event.data;
+      }
+    } else {
+      newMessages.push({ role: "system", content: event.data });
+    }
+  
+    return newMessages;
+  };
+  
   // Initialize WebSocket connection once, and keep it throughout the component's lifecycle
   const initializeWebSocket = () => {
     if (socketRef.current) return; // Avoid re-initializing if it's already done
@@ -21,20 +42,7 @@ const ChatApp = () => {
 
       // If the response is not "[done]", it means the server is still sending data
       if (event.data !== "[done]") {
-        setMessages((prevMessages) => {
-          const newMessages = [...prevMessages];
-          const lastMessage = newMessages[newMessages.length - 1];
-
-          if (lastMessage && lastMessage.role === "system") {
-            if (!lastMessage.content.includes(event.data)) {
-              lastMessage.content += event.data;
-            }
-          } else {
-            newMessages.push({ role: "system", content: event.data });
-          }
-
-          return newMessages;
-        });
+        setMessages((prevMessages) => updateMessages(prevMessages, event));
       } else {
         // Mark the waiting flag as false when the server signals it's done
         console.log("Server indicates the response is done.");
