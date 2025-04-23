@@ -74,8 +74,8 @@ Via ChatUI
  - Add .env support
  - Extracting LLM call to internal utilities
  - Add Docker setup for cross-platform usage
- - Add streaming support via SSE / WebSockets
- - Add Chat UI
+ - Add memorization 
+ - Add summarization for summarizing contexts
 
 ## License
 MIT
